@@ -123,7 +123,7 @@ packages=(
     "qt5ct" "qt5ct" "off"
     "qt6ct" "qt6ct" "off"
     "quickshell" "quickshell" "off"
-    "rofi-wayland" "rofi-wayland" "off"
+    "rofi" "rofi application launcher" "off"
     "slurp" "screenshot tool" "off"
     "swappy" "screenshot tool" "off"
     "SwayNotificationCenter" "notification agent" "off"
@@ -270,11 +270,18 @@ remove_directories /tmp/selected_directories.txt
 printf "\n%.0s" {1..1}
 printf "\n%s ${INFO} Removing COPR repositories..."
 COPR_REPOS=(
-  solopasha/hyprland
+  sdegler/hyprland
   erikreider/SwayNotificationCenter
   errornointernet/packages
   tofik/nwg-shell
-  errornointernet/quickshell 
+  alternateved/eza
+  lihaohong/yazi
+  opuk/bottom
+  atim/lazygit
+  atim/lazydocker
+  atim/starship
+  wezfurlong/wezterm-nightly
+  scottames/ghostty
 )
 remove_copr "${COPR_REPOS[@]}" 
 
