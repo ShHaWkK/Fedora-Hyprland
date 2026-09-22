@@ -1,0 +1,40 @@
+name: Validate uninstall sync
+
+on:
+  push:
+    branches: [fix/sync-uninstall-packages]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell syntax
+        run: bash -n uninstall.sh
+      - name: Check rofi package alignment
+        run: |
+          grep -q '"rofi" "rofi application launcher" "off"' uninstall.sh
+          grep -q '^    rofi$' install-scripts/00-hypr-pkgs.sh
+          ! grep -q '"rofi-wayland"' uninstall.sh
+      - name: Check COPR lists stay aligned
+        shell: python
+        run: |
+          import re
+          from pathlib import Path
+
+          def repos(path):
+              text = Path(path).read_text()
+              block = re.search(r'COPR_REPOS=\(\n(.*?)\n\)', text, re.S)
+              assert block, f"COPR_REPOS not found in {path}"
+              return {
+                  line.strip()
+                  for line in block.group(1).splitlines()
+                  if line.strip() and not line.lstrip().startswith("#")
+              }
+
+          install = repos("install-scripts/copr.sh")
+          uninstall = repos("uninstall.sh")
+          assert install == uninstall, (install - uninstall, uninstall - install)
