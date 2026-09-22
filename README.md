@@ -219,7 +219,7 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 
 - [ ] Note that Fedora 39 and older, waybar was not updated. Hyprland and older waybar build than 0.10.3, you will have no workspace
 
-- [ ] ROFI issues (scaling, unexplained scaling etc). This is most likely to experience if you are installing on a system where rofi is currently installed. To fix it uninstall rofi and install rofi-wayland . `sudo dnf autoremove rofi` . Install rofi-wayland with `sudo dnf install rofi-wayland`. Rofi-wayland is compatible with x11 so no need to worry.
+- [ ] ROFI issues (scaling, unexplained scaling etc). The installer now uses the Fedora `rofi` package. If you are upgrading from an older installation that used `rofi-wayland`, remove the old package first and rerun the installer so the current `rofi` package is installed.
 
 - [ ] If you use Brave or any Chrome based browsers, you may want to add```exec-once = gnome-keyring-daemon --start``` to `~/.config/hypr/UserConfigs/Startup_Apps.conf` if you don't want to get asked for your password each time you reboot your machine and want to access Brave. Obviously, you need to install gnome-keyring
 
@@ -243,7 +243,7 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 
 #### 👍👍👍 Thanks and Credits!
 - [`Hyprland`](https://hyprland.org/) Of course to Hyprland and @vaxerski for this awesome Dynamic Tiling Manager.
-- [`HYPRLAND COPR REPO`](https://copr.fedorainfracloud.org/coprs/solopasha/hyprland/) - a shout out to the one who created and maintaining Hyprland COPR Repo 
+- [`HYPRLAND COPR REPO`](https://copr.fedorainfracloud.org/coprs/sdegler/hyprland/) - a shout out to the maintainer of the Hyprland COPR Repo 
 
 ### 💖 Support
 - a Star on my Github repos would be nice 🌟
